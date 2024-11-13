@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Faculty+Glyphic&display=swap');
+
 /* Reset */
 *,
 *::before,
@@ -7,10 +9,10 @@
   padding: 0;
   border: 0;
   outline: 0;
-  font-family: "Lucida Sans", sans-serif;
+  font-family: "Faculty Glyphic", sans-serif;
   font-weight: bold;
   background-color: transparent;
-  color: black;
+  color: white;
   font-size: 16px;
   overflow: hidden;
   -webkit-touch-callout: none;
@@ -21,6 +23,58 @@
   user-select: none;
 }
 
+body {
+  background-color: gray;
+}
+
 header {
-    font-size: 80px;
+  display: flex;
+  justify-content: space-around ;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  color: black;
+  height: 70px;
+}
+
+.logo-text {
+  color: #D1C176;
+  font-size: 24px;
+}
+
+.nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.nav ul li {
+  margin: 0 15px;
+}
+
+.nav-item a {
+  text-decoration: none;
+  font-size: 16px;
+  color: black;
+}
+
+.nav-pressed a {
+  text-decoration: none;
+  font-size: 16px;
+  color: #D1C176;
+}
+
+#home {
+  background-color: #D1C176;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+#home a{
+  text-decoration: none;
+  font-size: 16px;
+  color: white;
 }
