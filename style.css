@@ -12,7 +12,7 @@
   font-family: "Faculty Glyphic", serif;
   font-weight: bold;
   background-color: transparent;
-  color: white;
+  color: black;
   font-size: 16px;
   overflow: hidden;
   -webkit-touch-callout: none;
@@ -24,6 +24,11 @@
 }
 
 body {
+  visibility: hidden;
+}
+
+body.translated {
+  visibility: visible;
   background-color: gray;
 }
 
@@ -122,6 +127,33 @@ header {
 
 .language:hover .language-icon {
   filter: grayscale(100%) brightness(0) invert(31%) sepia(0%) saturate(0%) hue-rotate(90deg) contrast(100%);
+}
+
+.language-dropdown {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 10px;
+  width: 250px;
+  z-index: 100;
+}
+
+.language-dropdown ul {
+  text-align: center;
+}
+
+.language-dropdown ul li {
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+
+.language-dropdown ul li:hover {
+  background-color: #f1f1f1;
 }
 
 .shopping-cart {
