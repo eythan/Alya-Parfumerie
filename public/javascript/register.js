@@ -5,25 +5,23 @@ function validateInput(input) {
     if (input.id === "email") {
         if (!/\S+@\S+\.\S+/.test(input.value)) {
             isValid = false;
-            input.classList.add("invalid");
-            input.classList.remove("valid");
             errorMessage.textContent = "Vous devez indiquer une adresse email valide.";
         } else {
-            input.classList.add("valid");
-            input.classList.remove("invalid");
             errorMessage.textContent = "";
         }
     }
 
     if (input.id === "password") {
-        if (input.value.length < 6) {
+        if (input.value === "") {
             isValid = false;
-            input.classList.add("invalid");
-            input.classList.remove("valid");
-            errorMessage.textContent = "Le mot de passe doit contenir au moins 6 caractères.";
+            errorMessage.textContent = "Vous devez indiquer un mot de passe.";
+        } else if (input.value.length < 8) {
+            isValid = false;
+            errorMessage.textContent = "Le mot de passe doit contenir au moins 8 caractères.";
+        } else if (!/[A-Z]/.test(input.value) || !/[a-z]/.test(input.value) || !/\d/.test(input.value) || !/[!@#$%^&*(),.?":{}|<>]/.test(input.value)) {
+            isValid = false;
+            errorMessage.textContent = "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial.";
         } else {
-            input.classList.add("valid");
-            input.classList.remove("invalid");
             errorMessage.textContent = "";
         }
     }
@@ -31,12 +29,8 @@ function validateInput(input) {
     if (input.id === "firstname") {
         if (input.value === "") {
             isValid = false;
-            input.classList.add("invalid");
-            input.classList.remove("valid");
             errorMessage.textContent = "Vous devez indiquer votre prénom.";
         } else {
-            input.classList.add("valid");
-            input.classList.remove("invalid");
             errorMessage.textContent = "";
         }
     }
@@ -44,31 +38,49 @@ function validateInput(input) {
     if (input.id === "lastname") {
         if (input.value === "") {
             isValid = false;
-            input.classList.add("invalid");
-            input.classList.remove("valid");
             errorMessage.textContent = "Vous devez indiquer votre nom.";
         } else {
-            input.classList.add("valid");
-            input.classList.remove("invalid");
             errorMessage.textContent = "";
         }
+    }
+
+    if (isValid) {
+        input.classList.add("valid");
+        input.classList.remove("invalid");
+    } else {
+        input.classList.add("invalid");
+        input.classList.remove("valid");
     }
 
     return isValid;
 }
 
 const inputs = document.querySelectorAll(".input-group input");
+
 inputs.forEach(input => {
-    input.addEventListener("input", function() {
-        validateInput(input);
+    let hasFocusedOnce = false;
+
+    input.addEventListener("focus", function() {
+        if (!hasFocusedOnce) {
+            input.dataset.initialValue = input.value;
+            hasFocusedOnce = true;
+        }
+    });
+
+    input.addEventListener("blur", function() {
+        if (input.value !== "" || input.dataset.initialValue !== "") {
+            if (!validateInput(input)) {
+                input.addEventListener("input", handleRealTimeValidation);
+            } else {
+                input.removeEventListener("input", handleRealTimeValidation);
+            }
+        }
     });
 });
 
-inputs.forEach(input => {
-    input.addEventListener("blur", function() {
-        validateInput(input);
-    });
-});
+function handleRealTimeValidation(event) {
+    validateInput(event.target);
+}
 
 document.querySelector("#register-btn").addEventListener("click", function(event) {
     event.preventDefault();
@@ -114,7 +126,7 @@ document.querySelector("#register-btn").addEventListener("click", function(event
             if (data.message === "Compte créé avec succès") {
                 window.location.href = "../index.html";
             } else {
-                alert("Erreur lors de l\"enregistrement : " + data.message);
+                alert("Erreur lors de l'enregistrement : " + data.message);
             }
         })
         .catch(error => {
