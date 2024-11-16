@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un Compte</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <header>
+        <div class="logo-text">
+          Alya - Parfumerie
+        </div>
+    </header>
+
+    <div class="account-container">
+        <div>
+            <h2 data-translate="register">NULL</h2>
+            <form action="#">
+                <div class="input-group">
+                    <label for="email" data-translate="email">NULL</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password" data-translate="password">NULL</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group gender-group">
+                    <label for="gender_m">
+                        <input type="radio" id="gender_m" name="gender" value="M" required>
+                        M.
+                    </label>
+                    <label for="gender_f">
+                        <input type="radio" id="gender_f" name="gender" value="Mme" required>
+                        Mme
+                    </label>
+                </div>
+                <div class="input-group">
+                    <label for="firstname" data-translate="firstname">NULL</label>
+                    <input type="text" id="firstname" name="firstname" required>
+                </div>
+                <div class="input-group">
+                    <label for="lastname" data-translate="lastname">NULL</label>
+                    <input type="text" id="lastname" name="lastname" required>
+                </div>
+                <button type="submit" class="login-btn" data-translate="register-btn">NULL</button>
+            </form>
+            <div class="create-account">
+                <a href="login.html" data-translate="login-link">NULL</a>
+            </div>
+        </div>
+    </div>
+    <script src="../javascript/language.js"></script>
+</body>
+</html>

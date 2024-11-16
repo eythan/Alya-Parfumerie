@@ -1,0 +1,17 @@
+{
+  "nav_home": "Home",
+  "nav_collection": "Our Collection",
+  "nav_manufacturing": "Manufacturing",
+  "nav_company": "Our Company",
+  "nav_contact": "Contact",
+  "language-text": "EN",
+  "login": "Log in",
+  "email": "Your email",
+  "password": "Your password",
+  "login-btn": "LOG IN",
+  "register": "CREATE ACCOUNT",
+  "firstname": "First Name",
+  "lastname": "Last Name",
+  "register-btn": "REGISTER",
+  "login-link": "LOG IN"
+}

@@ -1,0 +1,17 @@
+{
+  "nav_home": "Startseite",
+  "nav_collection": "Unsere Sammlung",
+  "nav_manufacturing": "Fertigung",
+  "nav_company": "Unser Unternehmen",
+  "nav_contact": "Kontakt",
+  "language-text": "DE",
+  "login": "Anmelden",
+  "email": "Ihre E-Mail",
+  "password": "Ihr Passwort",
+  "login-btn": "ANMELDEN",
+  "register": "KONTO ERSTELLEN",
+  "firstname": "Vorname",
+  "lastname": "Nachname",
+  "register-btn": "ANMELDEN",
+  "login-link": "EINLOGGEN"
+}

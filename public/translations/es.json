@@ -1,0 +1,17 @@
+{
+  "nav_home": "Inicio",
+  "nav_collection": "Nuestra Colección",
+  "nav_manufacturing": "Fabricación",
+  "nav_company": "Nuestra Empresa",
+  "nav_contact": "Contacto",
+  "language-text": "ES",
+  "login": "Iniciar sesión",
+  "email": "Tu correo electrónico",
+  "password": "Tu contraseña",
+  "login-btn": "INICIAR SESIÓN",
+  "register": "CREAR UNA CUENTA",
+  "firstname": "Nombre",
+  "lastname": "Apellido",
+  "register-btn": "REGISTRARSE",
+  "login-link": "INICIAR SESIÓN"
+}
