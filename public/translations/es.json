@@ -13,5 +13,7 @@
   "firstname": "Nombre",
   "lastname": "Apellido",
   "register-btn": "REGISTRARSE",
-  "login-link": "INICIAR SESIÓN"
+  "login-link": "INICIAR SESIÓN",
+  "mr": "Sr.",
+  "ms": "Sra."
 }

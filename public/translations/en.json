@@ -13,5 +13,7 @@
   "firstname": "First Name",
   "lastname": "Last Name",
   "register-btn": "REGISTER",
-  "login-link": "LOG IN"
+  "login-link": "LOG IN",
+  "mr": "Mr.",
+  "ms": "Ms."
 }

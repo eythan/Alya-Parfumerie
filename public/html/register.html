@@ -21,30 +21,34 @@
                 <div class="input-group">
                     <label for="email" data-translate="email">NULL</label>
                     <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="email-error"></span>
                 </div>
                 <div class="input-group">
                     <label for="password" data-translate="password">NULL</label>
                     <input type="password" id="password" name="password" required>
+                    <span class="error-message" id="password-error"></span>
                 </div>
                 <div class="input-group gender-group">
                     <label for="gender_m">
-                        <input type="radio" id="gender_m" name="gender" value="M" required>
-                        M.
+                        <input type="radio" id="gender_m" name="gender" value="Mr." required checked>
+                        <span data-translate="mr">NULL</span>
                     </label>
                     <label for="gender_f">
-                        <input type="radio" id="gender_f" name="gender" value="Mme" required>
-                        Mme
+                        <input type="radio" id="gender_f" name="gender" value="Ms." required>
+                        <span data-translate="ms">NULL</span>
                     </label>
                 </div>
                 <div class="input-group">
                     <label for="firstname" data-translate="firstname">NULL</label>
                     <input type="text" id="firstname" name="firstname" required>
+                    <span class="error-message" id="firstname-error"></span>
                 </div>
                 <div class="input-group">
                     <label for="lastname" data-translate="lastname">NULL</label>
                     <input type="text" id="lastname" name="lastname" required>
+                    <span class="error-message" id="lastname-error"></span>
                 </div>
-                <button type="submit" class="login-btn" data-translate="register-btn">NULL</button>
+                <button type="submit" id="register-btn" class="login-btn" data-translate="register-btn">NULL</button>
             </form>
             <div class="create-account">
                 <a href="login.html" data-translate="login-link">NULL</a>
@@ -52,5 +56,6 @@
         </div>
     </div>
     <script src="../javascript/language.js"></script>
+    <script src="../javascript/register.js"></script>
 </body>
 </html>
