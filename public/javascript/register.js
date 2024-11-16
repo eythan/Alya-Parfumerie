@@ -1,4 +1,4 @@
-function validateInput(input) {
+async function validateInput(input) {
     const errorMessage = document.querySelector(`#${input.id}-error`);
     let isValid = true;
 
@@ -7,7 +7,13 @@ function validateInput(input) {
             isValid = false;
             errorMessage.textContent = "Vous devez indiquer une adresse email valide.";
         } else {
-            errorMessage.textContent = "";
+            const emailExists = await checkEmailExists(input.value);
+            if (emailExists) {
+                isValid = false;
+                errorMessage.textContent = "Cette adresse email est déjà utilisée.";
+            } else {
+                errorMessage.textContent = "";
+            }
         }
     }
 
@@ -31,28 +37,57 @@ function validateInput(input) {
             isValid = false;
             errorMessage.textContent = "Vous devez indiquer votre prénom.";
         } else {
-            errorMessage.textContent = "";
+            if (document.getElementById("lastname").value === input.value) {
+                isValid = false;
+                errorMessage.textContent = "Le prénom et le nom ne peuvent pas être identiques.";
+            } else {
+                errorMessage.textContent = "";
+            }
         }
     }
-
+    
     if (input.id === "lastname") {
         if (input.value === "") {
             isValid = false;
             errorMessage.textContent = "Vous devez indiquer votre nom.";
         } else {
-            errorMessage.textContent = "";
+            if (document.getElementById("firstname").value === input.value) {
+                isValid = false;
+                errorMessage.textContent = "Le prénom et le nom ne peuvent pas être identiques.";
+            } else {
+                errorMessage.textContent = "";
+            }
         }
     }
-
+    
     if (isValid) {
         input.classList.add("valid");
         input.classList.remove("invalid");
+        input.dataset.invalid = "false";
     } else {
         input.classList.add("invalid");
         input.classList.remove("valid");
+        input.dataset.invalid = "true";
     }
 
     return isValid;
+}
+
+async function checkEmailExists(email) {
+    try {
+        const response = await fetch("/check-email", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email }),
+        });
+        const data = await response.json();
+        return data.exists;
+    } catch (error) {
+        console.error("Erreur lors de la vérification de l'email:", error);
+        return false;
+    }
 }
 
 const inputs = document.querySelectorAll(".input-group input");
@@ -69,43 +104,63 @@ inputs.forEach(input => {
 
     input.addEventListener("blur", function() {
         if (input.value !== "" || input.dataset.initialValue !== "") {
-            if (!validateInput(input)) {
-                input.addEventListener("input", handleRealTimeValidation);
-            } else {
-                input.removeEventListener("input", handleRealTimeValidation);
-            }
+            validateInput(input);
         }
+    });
+
+    input.addEventListener("input", function(event) {
+        handleRealTimeValidation(event);
     });
 });
 
 function handleRealTimeValidation(event) {
-    validateInput(event.target);
+    const input = event.target;
+    
+    if (input.dataset.invalid === "true") {
+        validateInput(input);
+    }
 }
 
-document.querySelector("#register-btn").addEventListener("click", function(event) {
+document.querySelector("#register-btn").addEventListener("click", async function(event) {
     event.preventDefault();
 
     const inputs = document.querySelectorAll(".input-group input");
+    let isValid = true;
+
     inputs.forEach(input => {
         input.classList.remove("invalid", "valid");
         const errorMessage = document.querySelector(`#${input.id}-error`);
         if (errorMessage) errorMessage.textContent = "";
+        input.dataset.invalid = "false";
     });
 
-    const email = document.querySelector("#email").value;
-    const password = document.querySelector("#password").value;
-    const firstname = document.querySelector("#firstname").value;
-    const lastname = document.querySelector("#lastname").value;
-    const gender = document.querySelector("input[name='gender']:checked").value;
+    const emailInput = document.querySelector("#email");
+    if (!(await validateInput(emailInput))) {
+        isValid = false;
+    }
 
-    let isValid = true;
+    const passwordInput = document.querySelector("#password");
+    if (!validateInput(passwordInput)) {
+        isValid = false;
+    }
 
-    if (!validateInput(document.querySelector("#email"))) isValid = false;
-    if (!validateInput(document.querySelector("#password"))) isValid = false;
-    if (!validateInput(document.querySelector("#firstname"))) isValid = false;
-    if (!validateInput(document.querySelector("#lastname"))) isValid = false;
+    const firstnameInput = document.querySelector("#firstname");
+    if (!validateInput(firstnameInput)) {
+        isValid = false;
+    }
+
+    const lastnameInput = document.querySelector("#lastname");
+    if (!validateInput(lastnameInput)) {
+        isValid = false;
+    }
 
     if (isValid) {
+        const email = emailInput.value;
+        const password = passwordInput.value;
+        const firstname = firstnameInput.value;
+        const lastname = lastnameInput.value;
+        const gender = document.querySelector("input[name='gender']:checked").value;
+
         const formData = {
             email,
             password,
