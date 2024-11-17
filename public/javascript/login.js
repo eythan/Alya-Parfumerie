@@ -94,13 +94,19 @@ document.getElementById("login-form").addEventListener("submit", function(event)
 
     let formIsValid = true;
 
+    if (!email || !password) {
+        loginErrorMessage.textContent = translations.identicalerror;
+        document.getElementById('login-message-error').style.display = 'block';
+        formIsValid = false;
+    }
+
     if (!isValidEmail(email)) {
-        emailError.textContent = translations.emailError
+        emailError.textContent = translations.emailError;
         formIsValid = false;
     }
 
     if (!isValidPassword(password)) {
-        passwordError.textContent = translations.passwordError
+        passwordError.textContent = translations.passwordError;
         formIsValid = false;
     }
 
@@ -149,4 +155,4 @@ document.getElementById("login-form").addEventListener("submit", function(event)
         console.error(err);
         alert("Error verifying email.");
     });
-}); 
+});
