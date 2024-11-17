@@ -178,12 +178,12 @@ document.querySelector("#register-btn").addEventListener("click", async function
         })
         .then(response => response.json())
         .then(data => {
-            if (data.message === "Account created successfully") {
+            if (data.message === "Compte créé avec succès") {
                 localStorage.setItem("authToken", data.token);
                 window.location.href = "../html/account.html";
             } else {
                 alert("Registration error: " + data.message);
-            }
+            }            
         })
         .catch(error => {
             console.error("Erreur lors de la communication avec le serveur:", error);
