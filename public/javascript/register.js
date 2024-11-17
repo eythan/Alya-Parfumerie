@@ -190,3 +190,16 @@ document.querySelector("#register-btn").addEventListener("click", async function
         });
     }
 });
+
+document.querySelector("#toggle-password").addEventListener("click", function () {
+    const passwordInput = document.querySelector("#password");
+    const passwordIcon = document.querySelector("#toggle-password img");
+
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        passwordIcon.src = "../assets/images/eye-invisible.png";
+    } else {
+        passwordInput.type = "password";
+        passwordIcon.src = "../assets/images/eye-visible.png";
+    }
+});

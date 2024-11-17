@@ -285,8 +285,8 @@ h2 {
   border-radius: 50%;
   position: relative;
   cursor: pointer;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
 }
 
 .gender-group input[type="radio"]:checked {
@@ -296,27 +296,28 @@ h2 {
 .gender-group input[type="radio"]:not(:checked):hover::before {
   content: "";
   position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 60%;
-  height: 60%;
-  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 70%;
+  border-radius: 100%;
   background-color: #DFDFDF;
+  transform: translate(-50%, -50%);
 }
 
 .gender-group input[type="radio"]:checked::before {
   content: "";
   position: absolute;
-  top: 4px;
-  left: 4px;
-  width: 60%;
-  height: 60%;
-  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  width: 70%;
+  height: 70%;
+  border-radius: 100%;
   background-color: #D1C176;
+  transform: translate(-50%, -50%);
 }
 
 .gender-group span {
-  margin-left: 5px;
   font-size: 16px;
 }
 
@@ -344,4 +345,29 @@ h2 {
 
 .input-group input.invalid + .error-message {
   display: block;
+}
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+  padding: 10px;
+  padding-right: 40px;
+  border: 2px solid #DFDFDF;
+  border-radius: 5px;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.password-toggle img {
+  width: 20px;
+  height: 20px;
 }

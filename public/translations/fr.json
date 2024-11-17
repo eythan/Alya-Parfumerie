@@ -8,12 +8,12 @@
   "login": "Identifiez-vous",
   "email": "Votre email",
   "password": "Votre mot de passe",
-  "login-btn": "CONNEXION",
-  "register": "CRÉER UN COMPTE",
+  "login-btn": "Connexion",
+  "register": "Création de compte",
   "firstname": "Prénom",
   "lastname": "Nom",
-  "register-btn": "INSCRIPTION",
-  "login-link": "SE CONNECTER",
+  "register-btn": "Inscription",
+  "login-link": "Se connecter",
   "mr": "M.",
   "ms": "Mme"
 }

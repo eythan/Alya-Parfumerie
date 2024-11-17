@@ -8,12 +8,12 @@
   "login": "Log in",
   "email": "Your email",
   "password": "Your password",
-  "login-btn": "LOG IN",
-  "register": "CREATE ACCOUNT",
+  "login-btn": "Log in",
+  "register": "Account Creation",
   "firstname": "First Name",
   "lastname": "Last Name",
-  "register-btn": "REGISTER",
-  "login-link": "LOG IN",
+  "register-btn": "Register",
+  "login-link": "Log IN",
   "mr": "Mr.",
   "ms": "Ms."
 }
