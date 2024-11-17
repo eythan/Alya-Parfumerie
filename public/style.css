@@ -346,28 +346,3 @@ h2 {
 .input-group input.invalid + .error-message {
   display: block;
 }
-.password-container {
-  position: relative;
-  width: 100%;
-}
-
-.password-container input {
-  width: 100%;
-  padding: 10px;
-  padding-right: 40px;
-  border: 2px solid #DFDFDF;
-  border-radius: 5px;
-}
-
-.password-toggle {
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
-}
-
-.password-toggle img {
-  width: 20px;
-  height: 20px;
-}

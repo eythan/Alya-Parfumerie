@@ -179,7 +179,7 @@ document.querySelector("#register-btn").addEventListener("click", async function
         .then(response => response.json())
         .then(data => {
             if (data.message === "Compte créé avec succès") {
-                window.location.href = "../index.html";
+                window.location.href = "dashboard.html";
             } else {
                 alert("Erreur lors de l'enregistrement : " + data.message);
             }
@@ -188,18 +188,5 @@ document.querySelector("#register-btn").addEventListener("click", async function
             console.error("Erreur lors de la communication avec le serveur:", error);
             alert("Erreur serveur, veuillez réessayer plus tard.");
         });
-    }
-});
-
-document.querySelector("#toggle-password").addEventListener("click", function () {
-    const passwordInput = document.querySelector("#password");
-    const passwordIcon = document.querySelector("#toggle-password img");
-
-    if (passwordInput.type === "password") {
-        passwordInput.type = "text";
-        passwordIcon.src = "../assets/images/eye-invisible.png";
-    } else {
-        passwordInput.type = "password";
-        passwordIcon.src = "../assets/images/eye-visible.png";
     }
 });
