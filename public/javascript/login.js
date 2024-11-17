@@ -22,7 +22,7 @@ document.getElementById("email").addEventListener("blur", function() {
     } else {
         emailInput.classList.add("invalid");
         emailInput.classList.remove("valid");
-        emailError.textContent = "Vous devez indiquer une adresse email valide.";
+        emailError.textContent = translations.emailError
         emailWasInvalid = true;
     }
 });
@@ -40,7 +40,7 @@ document.getElementById("email").addEventListener("input", function() {
         } else {
             emailInput.classList.add("invalid");
             emailInput.classList.remove("valid");
-            emailError.textContent = "Vous devez indiquer une adresse email valide.";
+            emailError.textContent = translations.emailError
         }
     }
 });
@@ -57,7 +57,7 @@ document.getElementById("password").addEventListener("blur", function() {
     } else {
         passwordInput.classList.add("invalid");
         passwordInput.classList.remove("valid");
-        passwordError.textContent = "Vous devez indiquer un mot de passe.";
+        passwordError.textContent = translations.passwordError
         passwordWasInvalid = true;
     }
 });
@@ -75,7 +75,7 @@ document.getElementById("password").addEventListener("input", function() {
         } else {
             passwordInput.classList.add("invalid");
             passwordInput.classList.remove("valid");
-            passwordError.textContent = "Vous devez indiquer un mot de passe.";
+            passwordError.textContent = translations.passwordError
         }
     }
 });
@@ -95,12 +95,12 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     let formIsValid = true;
 
     if (!isValidEmail(email)) {
-        emailError.textContent = "Vous devez indiquer une adresse email valide.";
+        emailError.textContent = translations.emailError
         formIsValid = false;
     }
 
     if (!isValidPassword(password)) {
-        passwordError.textContent = "Vous devez indiquer un mot de passe.";
+        passwordError.textContent = translations.passwordError
         formIsValid = false;
     }
 
@@ -118,7 +118,8 @@ document.getElementById("login-form").addEventListener("submit", function(event)
     .then(response => response.json())
     .then(data => {
         if (!data.exists) {
-            alert("L'email n'est pas enregistré.");
+            loginErrorMessage.textContent = translations.identicalerror;
+            document.getElementById('login-message-error').style.display = 'block';
             return;
         }
 
@@ -135,17 +136,17 @@ document.getElementById("login-form").addEventListener("submit", function(event)
                 localStorage.setItem("authToken", data.token);
                 window.location.href = "../html/account.html";
             } else {
-                loginErrorMessage.textContent = "Identifiants incorrects, veuillez vérifier votre email et mot de passe.";
+                loginErrorMessage.textContent = translations.identicalerror;
                 document.getElementById('login-message-error').style.display = 'block';
             }
         })
         .catch(err => {
             console.error(err);
-            alert("Erreur lors de la connexion.");
+            alert("Connection error.");
         });
     })
     .catch(err => {
         console.error(err);
-        alert("Erreur lors de la vérification de l'email.");
+        alert("Error verifying email.");
     });
-});
+}); 

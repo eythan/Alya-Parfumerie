@@ -35,15 +35,19 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+let translations = {};
+
 function loadLanguage(language) {
     fetch(`../translations/${language}.json`)
         .then(response => response.json())
         .then(data => {
+            translations = data;
             applyTranslations(data);
             document.body.classList.add("translated");
         })
         .catch(error => console.error("Error loading language:", error));
 }
+
 
 function applyTranslations(data) {
     document.querySelectorAll("[data-translate]").forEach(item => {

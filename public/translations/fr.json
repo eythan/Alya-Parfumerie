@@ -15,5 +15,14 @@
   "register-btn": "Inscription",
   "login-link": "Se connecter",
   "mr": "M.",
-  "ms": "Mme"
+  "ms": "Mme",
+  "emailError": "Vous devez indiquer une adresse email valide.",
+  "passwordError": "Vous devez indiquer un mot de passe.",
+  "useemail": "Cette adresse email est déjà utilisée.",
+  "passwordsecure": "Le mot de passe doit contenir au moins 8 caractères.",
+  "passwordcharacter": "Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial.",
+  "firstnameerror": "Vous devez indiquer votre prénom.",
+  "identicalname": "Le prénom et le nom ne peuvent pas être identiques.",
+  "lastnameerror": "Vous devez indiquer votre nom.",
+  "identicalerror": "Identifiants incorrects, veuillez vérifier votre email et mot de passe."
 }

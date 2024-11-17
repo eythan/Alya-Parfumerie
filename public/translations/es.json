@@ -15,5 +15,14 @@
   "register-btn": "Registrarse",
   "login-link": "Iniciar sesión",
   "mr": "Sr.",
-  "ms": "Sra."
+  "ms": "Sra.",
+  "emailError": "Debes indicar una dirección de correo electrónico válida.",
+  "passwordError": "Debes indicar una contraseña.",
+  "useemail": "Este correo electrónico ya está en uso.",
+  "passwordsecure": "La contraseña debe tener al menos 8 caracteres.",
+  "passwordcharacter": "La contraseña debe contener una letra mayúscula, una letra minúscula, un número y un carácter especial.",
+  "firstnameerror": "Debe indicar su nombre.",
+  "identicalname": "El nombre y el apellido no pueden ser idénticos.",
+  "lastnameerror": "Debe indicar su apellido.",
+  "identicalerror": "Identificadores incorrectos, por favor verifique su correo electrónico y contraseña."
 }

@@ -13,7 +13,16 @@
   "firstname": "First Name",
   "lastname": "Last Name",
   "register-btn": "Register",
-  "login-link": "Log IN",
+  "login-link": "Log in",
   "mr": "Mr.",
-  "ms": "Ms."
+  "ms": "Ms.",
+  "emailError": "You must provide a valid email address.",
+  "passwordError": "You must provide a password.",
+  "useemail": "This email address is already in use.",
+  "passwordsecure": "The password must be at least 8 characters long.",
+  "passwordcharacter": "The password must contain an uppercase letter, a lowercase letter, a number, and a special character.",
+  "firstnameerror": "You must provide your first name.",
+  "identicalname": "First name and last name cannot be identical.",
+  "lastnameerror": "You must provide your last name.",
+  "identicalerror": "Incorrect credentials, please check your email and password."
 }
