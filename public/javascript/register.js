@@ -179,7 +179,8 @@ document.querySelector("#register-btn").addEventListener("click", async function
         .then(response => response.json())
         .then(data => {
             if (data.message === "Compte créé avec succès") {
-                window.location.href = "dashboard.html";
+                localStorage.setItem("authToken", data.token);
+                window.location.href = "../html/account.html";
             } else {
                 alert("Erreur lors de l'enregistrement : " + data.message);
             }

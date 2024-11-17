@@ -33,7 +33,8 @@ document.getElementById("login-form").addEventListener("submit", function(event)
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                window.location.href = "dashboard.html";
+                localStorage.setItem("authToken", data.token);
+                window.location.href = "../html/account.html";
             } else {
                 alert("Mot de passe incorrect.");
             }

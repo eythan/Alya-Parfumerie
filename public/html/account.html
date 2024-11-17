@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérification du Token</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .message {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>Vérification du Token</h1>
+
+    <div id="message" class="message"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const authToken = localStorage.getItem("authToken");
+
+            if (!authToken) {
+                document.getElementById("message").textContent = "Aucun token trouvé. Veuillez vous connecter.";
+                document.getElementById("message").classList.add("error");
+                return;
+            }
+
+            fetch("/profile", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${authToken}`,
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.message === "Accès au profil") { 
+                    document.getElementById("message").textContent = `Votre token est valide ${data.user.email}`;
+                    document.getElementById("message").classList.add("success");
+                } else {
+                    document.getElementById("message").textContent = "Token invalide ou expiré. Veuillez vous reconnecter.";
+                    document.getElementById("message").classList.add("error");
+                }
+            })
+            .catch(err => {
+                console.error("Erreur lors de la vérification du token:", err);
+                document.getElementById("message").textContent = "Une erreur est survenue. Veuillez réessayer plus tard.";
+                document.getElementById("message").classList.add("error");
+            });
+        });
+    </script>
+
+</body>
+</html>

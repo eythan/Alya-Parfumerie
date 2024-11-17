@@ -2,9 +2,11 @@ const express = require("express");
 const mysql = require("mysql2");
 const path = require("path");
 const crypto = require("crypto");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const port = process.env.PORT || 3000;
+const JWT_SECRET = "}bA29.QgXN#$8gh=7K4f";
 
 const db = mysql.createConnection({
   host: "localhost",
@@ -29,6 +31,10 @@ function hashPassword(password) {
   hash.update(password);
   const hashed = hash.digest("hex");
   return hashed;
+}
+
+function generateToken(user) {
+  return jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, { expiresIn: "30d" });
 }
 
 app.post("/check-email", (req, res) => {
@@ -67,11 +73,17 @@ app.post("/register", (req, res) => {
 
   db.query(query, [email, hashedPassword, firstname, lastname, gender], (err, result) => {
     if (err) {
-      console.error("Erreur lors de l\"insertion dans la base de données:", err);
-      return res.status(500).json({ message: "Erreur serveur lors de l\"enregistrement des données." });
+      console.error("Erreur lors de l'insertion dans la base de données:", err);
+      return res.status(500).json({ message: "Erreur serveur lors de l'enregistrement des données." });
     }
 
-    res.status(200).json({ message: "Compte créé avec succès" });
+    const user = {
+      id: result.insertId,
+      email: email
+    };
+
+    const token = generateToken(user);
+    res.status(200).json({ message: "Compte créé avec succès", token: token });
   });
 });
 
@@ -93,11 +105,33 @@ app.post("/login", (req, res) => {
     }
 
     if (results.length > 0) {
-      return res.status(200).json({ success: true });
+      const user = results[0];
+      const token = generateToken(user);
+      return res.status(200).json({ success: true, token: token });
     } else {
       return res.status(400).json({ success: false, message: "Email ou mot de passe incorrect." });
     }
   });
+});
+
+function authenticateToken(req, res, next) {
+  const token = req.header("Authorization")?.replace("Bearer ", "");
+  if (!token) {
+    return res.status(401).json({ message: "Accès non autorisé" });
+  }
+
+  jwt.verify(token, JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.status(403).json({ message: "Token invalide" });
+    }
+
+    req.user = user;
+    next();
+  });
+}
+
+app.get("/profile", authenticateToken, (req, res) => {
+  res.status(200).json({ message: "Accès au profil", user: req.user });
 });
 
 
