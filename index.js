@@ -8,20 +8,39 @@ const app = express();
 const port = process.env.PORT || 3000;
 const JWT_SECRET = "}bA29.QgXN#$8gh=7K4f";
 
-const db = mysql.createConnection({
+const dbConfig = {
   host: "localhost",
   user: "root",
   password: "",
   database: "alya"
-});
+};
 
-db.connect((err) => {
-  if (err) {
-    console.error("Erreur de connexion à la base de données:", err);
-  } else {
-    console.log("Connecté à la base de données MySQL");
-  }
-});
+let db;
+
+function handleDisconnect() {
+  db = mysql.createConnection(dbConfig);
+
+  db.connect((err) => {
+    if (err) {
+      console.error("Erreur lors de la connexion à la base de données:", err);
+      setTimeout(handleDisconnect, 2000);
+    } else {
+      console.log("Connecté à la base de données MySQL");
+    }
+  });
+
+  db.on("error", (err) => {
+    console.error("Erreur de base de données:", err);
+    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+      console.log("Connexion à la base de données perdue. Reconnexion...");
+      handleDisconnect();
+    } else {
+      throw err;
+    }
+  });
+}
+
+handleDisconnect();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "/public")));
@@ -44,7 +63,7 @@ app.post("/check-email", (req, res) => {
     return res.status(400).json({ message: "L'email est requis." });
   }
 
-  const query = "SELECT * FROM User WHERE email = ?";
+  const query = "SELECT * FROM user WHERE email = ?";
   
   db.query(query, [email], (err, results) => {
     if (err) {
@@ -69,7 +88,7 @@ app.post("/register", (req, res) => {
 
   const hashedPassword = hashPassword(password);
 
-  const query = "INSERT INTO User (email, password, first_name, last_name, gender, status) VALUES (?, ?, ?, ?, ?, 'active')";
+  const query = "INSERT INTO user (email, password, first_name, last_name, gender, status) VALUES (?, ?, ?, ?, ?, 'active')";
 
   db.query(query, [email, hashedPassword, firstname, lastname, gender], (err, result) => {
     if (err) {
@@ -96,7 +115,7 @@ app.post("/login", (req, res) => {
 
   const hashedPassword = hashPassword(password);
 
-  const query = "SELECT * FROM User WHERE email = ? AND password = ?";
+  const query = "SELECT * FROM user WHERE email = ? AND password = ?";
   
   db.query(query, [email, hashedPassword], (err, results) => {
     if (err) {
@@ -133,7 +152,6 @@ function authenticateToken(req, res, next) {
 app.get("/profile", authenticateToken, (req, res) => {
   res.status(200).json({ message: "Accès au profil", user: req.user });
 });
-
 
 app.listen(port, "0.0.0.0", () => {
   console.log("Serveur app écoutant sur le port " + port);

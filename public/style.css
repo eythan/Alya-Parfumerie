@@ -16,15 +16,12 @@
   font-size: 16px;
   overflow: hidden;
   -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 body {
   visibility: hidden;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 body.translated {
@@ -43,9 +40,15 @@ header {
   border-bottom: 1px solid #DFDFDF;
 }
 
+header a {
+  text-decoration: none;
+}
+
 .logo-text {
   color: #D1C176;
   font-size: 24px;
+  user-select: none;
+  padding: 10px;
 }
 
 .nav ul {
@@ -108,6 +111,7 @@ header {
   align-items: center;
   padding: 10px;
   cursor: pointer;
+  user-select: none;
 }
 
 .language-text {
@@ -117,8 +121,8 @@ header {
 }
 
 .language-icon {
-  width: 20px;
-  height: 20px;
+  width: 21px;
+  height: 21px;
 }
 
 .language:hover .language-text {
@@ -135,11 +139,12 @@ header {
   align-items: center;
   cursor: pointer;
   padding: 3px;
+  user-select: none;
 }
 
 .shopping-cart-icon {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 }
 
 .shopping-cart:hover .shopping-cart-icon {
@@ -151,11 +156,13 @@ header {
   align-items: center;
   cursor: pointer;
   padding: 3px;
+  margin-left: 4px;
+  user-select: none;
 }
 
 .account-icon {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 }
 
 .account:hover .account-icon {
@@ -355,4 +362,54 @@ h2 {
 #login-message-error {
   margin-bottom: 15px;
   display: none;
+}
+
+.contact {
+  text-align: center;
+}
+
+.contact-info {
+  margin-top: 30px;
+  text-align: left;
+  font-size: 16px;
+  color: black;
+  background-color: #F7F7F7;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #DFDFDF;
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.contact-info h3 {
+  font-size: 20px;
+  color: #D1C176;
+  margin-bottom: 15px;
+}
+
+.contact-info ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.contact-info li {
+  margin-bottom: 10px;
+}
+
+.contact-info a {
+  color: #D1C176;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+.map-container {
+  margin-top: 20px;
+}
+
+.map-container iframe {
+  border-radius: 10px;
 }
