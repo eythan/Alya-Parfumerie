@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Agrandir';
+    src: url('fonts/agrandir.woff2') format('woff2'),
+        url('fonts/agrandir.woff') format('woff');
+}
+
+body {
+    font-family: 'Lora', serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+.agrandir {
+    font-family: 'Agrandir', sans-serif;
+}
+
+h1 {
+    font-family: 'Lora', serif;
+}
+
+p {
+    margin-bottom: 15px;
+    color: black;
+}
