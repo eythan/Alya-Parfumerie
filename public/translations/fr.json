@@ -24,5 +24,6 @@
   "firstnameerror": "Vous devez indiquer votre prénom.",
   "identicalname": "Le prénom et le nom ne peuvent pas être identiques.",
   "lastnameerror": "Vous devez indiquer votre nom.",
-  "identicalerror": "Identifiants incorrects, veuillez vérifier votre email et mot de passe."
+  "identicalerror": "Identifiants incorrects, veuillez vérifier votre email et mot de passe.",
+  "title_": "test"
 }
