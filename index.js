@@ -133,6 +133,19 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.get("/products", (req, res) => {
+  const query = "SELECT * FROM Product";
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Erreur lors de la récupération des produits:", err);
+      return res.status(500).json({ message: "Erreur serveur." });
+    }
+    res.status(200).json(results);
+  });
+});
+
+
 function authenticateToken(req, res, next) {
   const token = req.header("Authorization")?.replace("Bearer ", "");
   if (!token) {
